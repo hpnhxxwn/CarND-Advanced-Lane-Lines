@@ -90,7 +90,7 @@ I assume the vehicle is at the middle of the two lanes. The lane's center is cal
 
 #### Annotated image
 Below is the annotated image after applying previous steps:
-[!img6](https://github.com/hpnhxxwn/CarND-Advanced-Lane-Lines/blob/master/annotated_image.jpg)
+[!img6](https://github.com/hpnhxxwn/CarND-Advanced-Lane-Lines/blob/master/Figure_1.png)
 
 ### Discussion
 The pipeline implemented has made lots of strong assumptions that will be easily violated in the real world. For example, in the challenge project video, the car is on a carpool lane where you can see the carpool symbol which is not considered in this pipeline. Also the pipeline assumes there is no car in front of itself. This is almost not possible in the real world. The future work includes taking out these strong assumptions and use deep learning algorithms for better detection as deep learning has been proven very useful in computer vision.
