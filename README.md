@@ -14,7 +14,7 @@ The following are the steps performed by the pipeline:
 * Warp the detected lane boundaries back onto the original image.
 * Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
 
-The output video is annotated_output.mp4, and is uploaded to [![YouTube]] (https://www.youtube.com/watch?v=FGOXWpqLYi0&feature=youtu.be)
+The output video is annotated_output.mp4, and is uploaded to [![YouTube] (https://www.youtube.com/watch?v=FGOXWpqLYi0&feature=youtu.be)]
 
 ### Requirements
 * Python 3.5+
@@ -81,7 +81,7 @@ I did the following to fit second order polynomial on both left and right lanes:
 * Given 2 groups of pixels (left and right lane line candidate pixels), fit a 2nd order polynomial to each group, which represents the estimated left and right lane lines
 
 #### Radius of Curvature
-The equation of calculating the radius is [![here]] (http://www.intmath.com/applications-differentiation/8-radius-curvature.php). We have to convert from pixel space to meters (aka real world units) by defining the appropriate pixel height to lane length and pixel width to lane width ratios:
+The equation of calculating the radius is [![here] (http://www.intmath.com/applications-differentiation/8-radius-curvature.php)]. We have to convert from pixel space to meters (aka real world units) by defining the appropriate pixel height to lane length and pixel width to lane width ratios:
 I also converted the pixel space to meters, assuming 30 meters per 720 pixels in the vertical direction, and 3.7 meters per 700 pixels in the horizontal direction. The results are averaged.
 
 #### Position of the Vehicle With Respect to Center
