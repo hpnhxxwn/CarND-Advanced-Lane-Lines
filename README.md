@@ -32,20 +32,20 @@ I start by preparing "object points", which will be the (x, y, z) coordinates of
 
 I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  I applied this distortion correction to the images camera_cal/calibration2.jpg and camera_cal/calibration5.jpg using the `cv2.undistort()` function and obtained this result: 
 
-![alt text][image1]
+![alt text][https://github.com/hpnhxxwn/CarND-Advanced-Lane-Lines/blob/master/undist.png?raw=true]
 
 The calibration matrix is stored as a pickle file 'calibrate_camera.p' for later usage.
 
 ### Pipeline
 The following images show the two original distorted images and their corrected version.
-![img1]()
+![img1](https://github.com/hpnhxxwn/CarND-Advanced-Lane-Lines/blob/master/pipeline_undist.png?raw=true)
 
 #### Color Thresholding 
 In project one I used yellow and white color as target colors to detect the lane, and I am using the same approach in this project since the lanes are either yellow or white. HSV and HLS are better than RGB because they separates color components from lightness and saturation. It is easier to find the thresholds on the three channels because they are now independent while in RGB space color, lightness and saturation are combines together. I compared HSV and HSL color spaces and finally decided to use HSL because HSL gives better result. 
-[!img2]()
+[!img2](https://github.com/hpnhxxwn/CarND-Advanced-Lane-Lines/blob/master/hsv_vs_hls.png?raw=true)
 
 Below is the binary image output from the color thresholding.
-[!img3]()
+[!img3](https://github.com/hpnhxxwn/CarND-Advanced-Lane-Lines/blob/master/yw_masked.png?raw=true)
 
 #### Gradient Thresholding
 Gradient is the change of the image intensity. I used Sobel operator to find the gradients and their directions. 
@@ -57,7 +57,7 @@ There are three methods performed:
 * Sobel operator to calculate the direction of the gradient
 
 Below are the output figures after applying the three methods, and the combined binary image.
-[!img4]()
+[!img4](https://github.com/hpnhxxwn/CarND-Advanced-Lane-Lines/blob/master/thresholded_figs.png?raw=true)
 
 #### Perspective Transform
 Next step is to transform the image to a "bird's eye view" which can be used to fit a polynomial function. The very first step to accomplish this is to pick the source and destination points. Below is the table of the pixel positions of source/destination points.
@@ -70,7 +70,7 @@ Next step is to transform the image to a "bird's eye view" which can be used to 
 | 710, 450      | 1000, 0        |
 
 Here is the two example images after applying perspective transform:
-[!img5]()
+[!img5](https://github.com/hpnhxxwn/CarND-Advanced-Lane-Lines/blob/master/perspective_transform.png?raw=true)
 
 #### Polynomial fit
 I did the following to fit second order polynomial on both left and right lanes:
@@ -90,7 +90,7 @@ I assume the vehicle is at the middle of the two lanes. The lane's center is cal
 
 #### Annotated image
 Below is the annotated image after applying previous steps:
-[!img6]()
+[!img6](https://github.com/hpnhxxwn/CarND-Advanced-Lane-Lines/blob/master/annotated_image.jpg)
 
 ### Discussion
 The pipeline implemented has made lots of strong assumptions that will be easily violated in the real world. For example, in the challenge project video, the car is on a carpool lane where you can see the carpool symbol which is not considered in this pipeline. Also the pipeline assumes there is no car in front of itself. This is almost not possible in the real world. The future work includes taking out these strong assumptions and use deep learning algorithms for better detection as deep learning has been proven very useful in computer vision.
