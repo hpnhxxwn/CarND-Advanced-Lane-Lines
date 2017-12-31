@@ -90,15 +90,15 @@ def hls_color_thresh(img, threshLow, threshHigh):
                  
     return binary_output
 
-def hls_thresh(img, thresh=(100, 255)):
-        """
-        Convert RGB to HLS and threshold to binary image using S channel
-        """
-        hls = cv2.cvtColor(img, cv2.COLOR_RGB2HLS)
-        s_channel = hls[:,:,2]
-        binary_output = np.zeros_like(s_channel)
-        binary_output[(s_channel > thresh[0]) & (s_channel <= thresh[1])] = 1
-        return binary_output
+# def hls_thresh(img, thresh=(100, 255)):
+#         """
+#         Convert RGB to HLS and threshold to binary image using S channel
+#         """
+#         hls = cv2.cvtColor(img, cv2.COLOR_RGB2HLS)
+#         s_channel = hls[:,:,2]
+#         binary_output = np.zeros_like(s_channel)
+#         binary_output[(s_channel > thresh[0]) & (s_channel <= thresh[1])] = 1
+#         return binary_output
 
 
 def combined_thresh(img):
@@ -112,13 +112,13 @@ def combined_thresh(img):
         abs_bin = abs_sobel_thresh(img, orient='x', thresh_min=50, thresh_max=255)
         mag_bin = mag_thresh(img, sobel_kernel=3, mag_thresh=(50, 255))
         dir_bin = dir_threshold(img, sobel_kernel=15, thresh=(0.7, 1.3))
-        hls_bin = hls_thresh(img, thresh=(170, 255))
+        # hls_bin = hls_thresh(img, thresh=(170, 255))
 
         combined = np.zeros_like(dir_bin)
         combined[(imgThres_yellow==1) | (imgThres_white==1)] = 1
-        combined[(abs_bin == 1 | ((mag_bin == 1) & (dir_bin == 1))) | hls_bin == 1] = 1
+        combined[(abs_bin == 1 | ((mag_bin == 1) & (dir_bin == 1)))] = 1
 
-        return combined, abs_bin, mag_bin, dir_bin, hls_bin
+        return combined, abs_bin, mag_bin, dir_bin, imgThres_yellow, imgThres_white
 
 if __name__ == '__main__':
         img_file = 'test_images/straight_lines1.jpg'
@@ -132,7 +132,7 @@ if __name__ == '__main__':
         img = mpimg.imread(img_file)
         img = cv2.undistort(img, mtx, dist, None, mtx)
 
-        combined, abs_bin, mag_bin, dir_bin, hls_bin = combined_thresh(img)
+        combined, abs_bin, mag_bin, dir_bin, imgThres_yellow, imgThres_white = combined_thresh(img)
 
         plt.subplot(2, 3, 1)
         plt.imshow(abs_bin, cmap='gray', vmin=0, vmax=1)
@@ -140,8 +140,8 @@ if __name__ == '__main__':
         plt.imshow(mag_bin, cmap='gray', vmin=0, vmax=1)
         plt.subplot(2, 3, 3)
         plt.imshow(dir_bin, cmap='gray', vmin=0, vmax=1)
-        plt.subplot(2, 3, 4)
-        plt.imshow(hls_bin, cmap='gray', vmin=0, vmax=1)
+        # plt.subplot(2, 3, 4)
+        # plt.imshow(hls_bin, cmap='gray', vmin=0, vmax=1)
         plt.subplot(2, 3, 5)
         plt.imshow(img)
         plt.subplot(2, 3, 6)
