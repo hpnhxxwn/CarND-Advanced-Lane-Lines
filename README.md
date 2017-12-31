@@ -32,7 +32,7 @@ I start by preparing "object points", which will be the (x, y, z) coordinates of
 
 I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  I applied this distortion correction to the images camera_cal/calibration2.jpg and camera_cal/calibration5.jpg using the `cv2.undistort()` function and obtained this result: 
 
-![alt text][https://github.com/hpnhxxwn/CarND-Advanced-Lane-Lines/blob/master/undist.png?raw=true]
+[!alt text][https://github.com/hpnhxxwn/CarND-Advanced-Lane-Lines/blob/master/undist.png?raw=true]
 
 The calibration matrix is stored as a pickle file 'calibrate_camera.p' for later usage.
 
