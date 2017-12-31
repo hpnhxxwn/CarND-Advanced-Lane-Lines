@@ -57,7 +57,7 @@ There are three methods performed:
 * Sobel operator to calculate the direction of the gradient
 
 Below are the output figures after applying the three methods, and the combined binary image.
-![img4](https://github.com/hpnhxxwn/CarND-Advanced-Lane-Lines/blob/master/thresholded_figs.png?raw=true)
+![img4](https://github.com/hpnhxxwn/CarND-Advanced-Lane-Lines/blob/master/thresholded.png?raw=true)
 
 #### Perspective Transform
 Next step is to transform the image to a "bird's eye view" which can be used to fit a polynomial function. The very first step to accomplish this is to pick the source and destination points. Below is the table of the pixel positions of source/destination points.
